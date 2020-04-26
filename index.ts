@@ -15,12 +15,10 @@ const resolvers: Resolvers = {
     addHouse: (_, { input }) => <any>new House(input).save(),
   },
   Street: {
-    id: (street) => street.id,
     houses: async (street) =>
       <any>House.find({ street: (street as any)._id as any }),
   },
   House: {
-    id: (house) => house.id,
     street: async (house) => <any>Street.findById(house.street),
   },
   Query: {
