@@ -1,0 +1,14 @@
+schema: "schema.graphql"
+require:
+  - ts-node/register
+generates:
+  types.ts:
+    plugins:
+      - typescript-mongodb
+      - typescript
+      - typescript-resolvers
+    config:
+      objectIdType: string
+      idFieldName: id
+      useIndexSignature: true
+      noSchemaStitching: true

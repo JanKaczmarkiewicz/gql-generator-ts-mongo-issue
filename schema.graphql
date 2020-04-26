@@ -1,0 +1,30 @@
+type House @entity {
+  id: String! @id
+  number: String! @column
+  street: Street @embedded
+}
+
+type Street @entity {
+  id: String! @id
+  name: String! @column
+  houses: [House]!
+}
+
+type Mutation {
+  addHouse(input: AddHouseInput!): House!
+  addStreet(input: AddStreetInput!): Street!
+}
+
+type Query {
+  house(id: String!): House
+  street(id: String!): Street
+}
+
+input AddHouseInput {
+  number: String!
+  street: String!
+}
+
+input AddStreetInput {
+  name: String!
+}
