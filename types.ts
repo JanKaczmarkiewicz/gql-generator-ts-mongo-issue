@@ -1,15 +1,15 @@
 import { GraphQLResolveInfo } from 'graphql';
 export type Maybe<T> = T | null;
 export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
-
+import { ObjectID } from 'mongodb';
 export type HouseDbObject = {
-  id: string,
+  _id: ObjectID,
   number: string,
-  street?: Maybe<StreetDbObject>,
+  street: Street,
 };
 
 export type StreetDbObject = {
-  id: string,
+  _id: ObjectID,
   name: string,
 };
 
@@ -34,7 +34,7 @@ export type House = {
    __typename?: 'House';
   id: Scalars['String'];
   number: Scalars['String'];
-  street?: Maybe<Street>;
+  street: Street;
 };
 
 export type Street = {
@@ -218,7 +218,7 @@ export type MapDirectiveResolver<Result, Parent, ContextType = any, Args = MapDi
 export type HouseResolvers<ContextType = any, ParentType extends ResolversParentTypes['House'] = ResolversParentTypes['House']> = ResolversObject<{
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   number?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  street?: Resolver<Maybe<ResolversTypes['Street']>, ParentType, ContextType>,
+  street?: Resolver<ResolversTypes['Street'], ParentType, ContextType>,
   __isTypeOf?: isTypeOfResolverFn<ParentType>,
 }>;
 

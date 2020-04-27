@@ -1,7 +1,7 @@
 type House @entity {
   id: String! @id
   number: String! @column
-  street: Street @column
+  street: Street! @column
 }
 
 type Street @entity {

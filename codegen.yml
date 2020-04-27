@@ -8,7 +8,5 @@ generates:
       - typescript
       - typescript-resolvers
     config:
-      objectIdType: string
-      idFieldName: id
       useIndexSignature: true
       noSchemaStitching: true

@@ -11,14 +11,16 @@ const typeDefs = fs.readFileSync(path.join(__dirname, "schema.graphql"));
 
 const resolvers: Resolvers = {
   Mutation: {
-    addStreet: (_, { input }) => <any>new Street(input).save(),
     addHouse: (_, { input }) => <any>new House(input).save(),
+    addStreet: (_, { input }) => <any>new Street(input).save(),
   },
   Street: {
+    id: (street) => ((street as any)._id as any) + "",
     houses: async (street) =>
       <any>House.find({ street: (street as any)._id as any }),
   },
   House: {
+    id: (house) => ((house as any)._id as any) + "",
     street: async (house) => <any>Street.findById(house.street),
   },
   Query: {
